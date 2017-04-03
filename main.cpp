@@ -12,7 +12,6 @@ game.StartWindow.draw(again);
 game.StartWindow.display();
 while (game.StartWindow.isOpen())
 {
-//fuck it all
 ;
 }
 ;
