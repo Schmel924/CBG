@@ -3,7 +3,19 @@
 #include <iostream>
 #include <string>
    
+struct oyvey {
+const   int pixelsfromwindowborder=50;
+const	int sizeofblock=50;
+const	int thicknessoflines=2;
+const static int numberofblocks=25;
+} Global_interface;
 
+const int getnumberoflines (int numberofblocks)
+{ if (numberofblocks==25)
+	return 8;
+ else 
+	return 2;
+}
 
 int main()
 {
@@ -14,13 +26,22 @@ int main()
     curser.setPosition(sf::Vector2f(x,y));
     curser.setFillColor(sf::Color::Red);
     sf::Vector2u size = window.getSize();
+    sf::RectangleShape netlines [getnumberoflines(Global_interface.numberofblocks)];
+    for(int i=0;i<getnumberoflines(Global_interface.numberofblocks)/2;i++)
+	{
+	sf::Vector2f A ((float)10+Global_interface.sizeofblock*5,(float)2);
+	netlines[i].setSize(A); //((float)size.x-Global_interface.pixelsfromwindowborder,(float)2);
+	netlines[i].setPosition(Global_interface.pixelsfromwindowborder,Global_interface.pixelsfromwindowborder+(Global_interface.sizeofblock*(i+1))+Global_interface.thicknessoflines*(i+1));
+	}	
+    for(int i=getnumberoflines(Global_interface.numberofblocks)/2;i<getnumberoflines(Global_interface.numberofblocks);i++)	
+	{
+	sf::Vector2f A ((float)2,(float)10+Global_interface.sizeofblock*5); 
+	netlines[i].setSize(A) ;
+	netlines[i].setPosition(Global_interface.pixelsfromwindowborder+(Global_interface.sizeofblock*(i-3))+Global_interface.thicknessoflines*(i-3),Global_interface.pixelsfromwindowborder );
+	}
+   
     sf::Font font;
     font.loadFromFile("arial.ttf");
-    std::string refer = " ";
-    refer=refer+std::to_string(size.x);
-    refer+="--";
-    refer=refer+std::to_string(size.y);
-    sf::Text text(refer, font,150);
     while (window.isOpen())
     {
         sf::Event event;
@@ -31,16 +52,21 @@ int main()
         }
 
         window.clear();
-//      window.draw(shape);
 	window.draw(curser);
-        window.draw(text);
 	std::string curr = " ";
 	curr=curr+std::to_string(x);
-	curr+="--";
+	curr+="-";
+	curr+=std::to_string(getnumberoflines(Global_interface.numberofblocks));
+	curr+="-";
 	curr=curr+std::to_string(y);
 	sf::Text secon(curr,font,50);
 	secon.setPosition(100,500);
 	window.draw(secon);
+    for(int i=0;i<getnumberoflines(Global_interface.numberofblocks);i++)
+	{
+	window.draw(netlines[i]);
+	}
+
         window.display();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{window.close();}
