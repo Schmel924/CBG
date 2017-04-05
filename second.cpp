@@ -2,14 +2,8 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <iostream>
 #include <string>
-   
-struct oyvey {
-const   int pixelsfromwindowborder=50;
-const	int sizeofblock=50;
-const	int thicknessoflines=2;
-const static int numberofblocks=25;
-} Global_interface;
-
+#include "interface_class.h"   
+#include "cursor_class.h"
 const int getnumberoflines (int numberofblocks)
 { if (numberofblocks==25)
 	return 8;
@@ -22,13 +16,13 @@ void /*??*/ sendlinestowindow (sf::RenderWindow *window)
     sf::RectangleShape netlines [getnumberoflines(Global_interface.numberofblocks)];
     for(int i=0;i<getnumberoflines(Global_interface.numberofblocks)/2;i++)
 	{
-	sf::Vector2f A ((float)10+Global_interface.sizeofblock*5,(float)2);
+	sf::Vector2f A ((float)(Global_interface.thicknessoflines+Global_interface.sizeofblock)*5,(float)Global_interface.thicknessoflines);
 	netlines[i].setSize(A); //((float)size.x-Global_interface.pixelsfromwindowborder,(float)2);
 	netlines[i].setPosition(Global_interface.pixelsfromwindowborder,Global_interface.pixelsfromwindowborder+(Global_interface.sizeofblock*(i+1))+Global_interface.thicknessoflines*(i+1));
 	}	
     for(int i=getnumberoflines(Global_interface.numberofblocks)/2;i<getnumberoflines(Global_interface.numberofblocks);i++)	
 	{
-	sf::Vector2f A ((float)2,(float)10+Global_interface.sizeofblock*5); 
+	sf::Vector2f A ((float)Global_interface.thicknessoflines,(float)(Global_interface.thicknessoflines+Global_interface.sizeofblock)*5); 
 	netlines[i].setSize(A) ;
 	netlines[i].setPosition(Global_interface.pixelsfromwindowborder+(Global_interface.sizeofblock*(i-3))+Global_interface.thicknessoflines*(i-3),Global_interface.pixelsfromwindowborder );
 	}
@@ -44,11 +38,14 @@ int main()
 {
     sf::RenderWindow window (sf::VideoMode::getDesktopMode(),"SFML works!");
     sf::RectangleShape curser;
-    float x=500,y=500;;
+    float x=208,y=208;;
     curser.setSize(sf::Vector2f(50,50));
     curser.setPosition(sf::Vector2f(x,y));
     curser.setFillColor(sf::Color::Red);
     sf::Vector2u size = window.getSize();
+    keyboard_cursor key_cur;
+    key_cur.x_coord=3;
+    key_cur.y_coord=1;
     sf::Font font;
     font.loadFromFile("arial.ttf");
     while (window.isOpen())
@@ -63,6 +60,8 @@ int main()
         window.clear();
 	sendlinestowindow(&window);
 	window.draw(curser);
+	interface iface;
+	iface.render_cursor (&window, &key_cur);
 	std::string curr = " ";
 	curr=curr+std::to_string(x);
 	curr+="-";
