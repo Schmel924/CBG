@@ -17,15 +17,8 @@ const int getnumberoflines (int numberofblocks)
 	return 2;
 }
 
-int main()
+void /*??*/ sendlinestowindow (sf::RenderWindow *window)
 {
-    sf::RenderWindow window (sf::VideoMode::getDesktopMode(),"SFML works!");
-    sf::RectangleShape curser;
-    float x=500,y=500;;
-    curser.setSize(sf::Vector2f(50,50));
-    curser.setPosition(sf::Vector2f(x,y));
-    curser.setFillColor(sf::Color::Red);
-    sf::Vector2u size = window.getSize();
     sf::RectangleShape netlines [getnumberoflines(Global_interface.numberofblocks)];
     for(int i=0;i<getnumberoflines(Global_interface.numberofblocks)/2;i++)
 	{
@@ -40,6 +33,22 @@ int main()
 	netlines[i].setPosition(Global_interface.pixelsfromwindowborder+(Global_interface.sizeofblock*(i-3))+Global_interface.thicknessoflines*(i-3),Global_interface.pixelsfromwindowborder );
 	}
    
+    for(int i=0;i<getnumberoflines(Global_interface.numberofblocks);i++)
+	{
+	window->draw(netlines[i]);
+	}
+
+}
+
+int main()
+{
+    sf::RenderWindow window (sf::VideoMode::getDesktopMode(),"SFML works!");
+    sf::RectangleShape curser;
+    float x=500,y=500;;
+    curser.setSize(sf::Vector2f(50,50));
+    curser.setPosition(sf::Vector2f(x,y));
+    curser.setFillColor(sf::Color::Red);
+    sf::Vector2u size = window.getSize();
     sf::Font font;
     font.loadFromFile("arial.ttf");
     while (window.isOpen())
@@ -52,6 +61,7 @@ int main()
         }
 
         window.clear();
+	sendlinestowindow(&window);
 	window.draw(curser);
 	std::string curr = " ";
 	curr=curr+std::to_string(x);
@@ -62,10 +72,6 @@ int main()
 	sf::Text secon(curr,font,50);
 	secon.setPosition(100,500);
 	window.draw(secon);
-    for(int i=0;i<getnumberoflines(Global_interface.numberofblocks);i++)
-	{
-	window.draw(netlines[i]);
-	}
 
         window.display();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
