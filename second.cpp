@@ -36,7 +36,11 @@ void /*??*/ sendlinestowindow (sf::RenderWindow *window)
 
 int main()
 {
-    sf::RenderWindow window (sf::VideoMode::getDesktopMode(),"SFML works!");
+    //for various purposes
+    
+    
+    sf::RenderWindow window (sf::VideoMode(500,500),"SFML works!");
+    //sf::RenderWindow window (sf::VideoMode::getDesktopMode(),"SFML works!");
     sf::RectangleShape curser;
     float x=208,y=208;;
     curser.setSize(sf::Vector2f(50,50));
@@ -55,6 +59,22 @@ int main()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+	    if (event.type == sf::Event::KeyPressed)
+		switch(event.key.code)
+			{
+			case (sf::Keyboard::Left):
+				key_cur.LEFT_coord();
+				break;
+			case (sf::Keyboard::Right):
+				key_cur.RIGHT_coord();
+				break;
+			case (sf::Keyboard::Up):
+				key_cur.UP_coord();
+				break;
+			case (sf::Keyboard::Down):
+				key_cur.DOWN_coord();
+				break;
+			}
         }
 
         window.clear();
