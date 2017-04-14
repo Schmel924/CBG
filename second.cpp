@@ -41,11 +41,6 @@ int main()
     
     sf::RenderWindow window (sf::VideoMode(500,500),"SFML works!");
     //sf::RenderWindow window (sf::VideoMode::getDesktopMode(),"SFML works!");
-    sf::RectangleShape curser;
-    float x=208,y=208;;
-    curser.setSize(sf::Vector2f(50,50));
-    curser.setPosition(sf::Vector2f(x,y));
-    curser.setFillColor(sf::Color::Red);
     sf::Vector2u size = window.getSize();
     keyboard_cursor key_cur;
     key_cur.x_coord=3;
@@ -79,30 +74,11 @@ int main()
 
         window.clear();
 	sendlinestowindow(&window);
-	window.draw(curser);
 	interface iface;
 	iface.render_cursor (&window, &key_cur);
-	std::string curr = " ";
-	curr=curr+std::to_string(x);
-	curr+="-";
-	curr+=std::to_string(getnumberoflines(Global_interface.numberofblocks));
-	curr+="-";
-	curr=curr+std::to_string(y);
-	sf::Text secon(curr,font,50);
-	secon.setPosition(100,500);
-	window.draw(secon);
-
         window.display();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{window.close();}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)&&x>=10)
-		{x-=10;curser.setPosition(sf::Vector2f(x,y));/*window.draw(curser);*/}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)&&x<=1000)
-		{x+=10;curser.setPosition(sf::Vector2f(x,y));/*window.draw(curser);*/}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)&&y>=10)
-		{y-=10;curser.setPosition(sf::Vector2f(x,y));/*window.draw(curser);*/}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)&&y<=550)
-		{y+=10;curser.setPosition(sf::Vector2f(x,y));/*window.draw(curser);*/}
     }
 
     return 0;
