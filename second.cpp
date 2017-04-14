@@ -41,7 +41,6 @@ int main()
     
     sf::RenderWindow window (sf::VideoMode(500,500),"SFML works!");
     //sf::RenderWindow window (sf::VideoMode::getDesktopMode(),"SFML works!");
-    sf::Vector2u size = window.getSize();
     keyboard_cursor key_cur;
     key_cur.x_coord=3;
     key_cur.y_coord=1;
@@ -72,6 +71,7 @@ int main()
 			}
         }
 
+        sf::Vector2u size = window.getSize();
         window.clear();
 	sendlinestowindow(&window);
 	interface iface;

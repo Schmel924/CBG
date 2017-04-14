@@ -6,11 +6,11 @@
 class keyboard_cursor ;
 
 
-const static struct oyvey {
-const int pixelsfromwindowborder = 50;
-const int sizeofblock = 50;
-const int thicknessoflines = 2;
-const static int numberofblocks = 25;
+struct oyvey {
+int pixelsfromwindowborder = 50;
+int sizeofblock = 50;
+int thicknessoflines = 2;
+int numberofblocks = 25;
 } Global_interface;
 
 class interface {
