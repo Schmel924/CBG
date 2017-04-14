@@ -6,12 +6,12 @@
 class keyboard_cursor ;
 
 
-struct oyvey {
-int pixelsfromwindowborder = 50;
-int sizeofblock = 50;
-int thicknessoflines = 2;
-int numberofblocks = 25;
-} Global_interface;
+static struct oyvey {
+int indent = 50;  //aka pixelsfromwindowsborder
+int SoB = 50; // aka sizeofblocks
+int thick = 2; // aka thicknessoflines
+int NoB = 25; // aka numberofblocks
+} G_i; // aka Global_interface
 
 class interface {
 public:

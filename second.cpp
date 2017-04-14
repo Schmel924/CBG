@@ -13,21 +13,21 @@ const int getnumberoflines (int numberofblocks)
 
 void /*??*/ sendlinestowindow (sf::RenderWindow *window)
 {
-    sf::RectangleShape netlines [getnumberoflines(Global_interface.numberofblocks)];
-    for(int i=0;i<getnumberoflines(Global_interface.numberofblocks)/2;i++)
+    sf::RectangleShape netlines [getnumberoflines(G_i.NoB)];
+    for(int i=0;i<getnumberoflines(G_i.NoB)/2;i++)
 	{
-	sf::Vector2f A ((float)(Global_interface.thicknessoflines+Global_interface.sizeofblock)*5,(float)Global_interface.thicknessoflines);
+	sf::Vector2f A ((float)(G_i.thick+G_i.SoB)*5,(float)G_i.thick);
 	netlines[i].setSize(A); //((float)size.x-Global_interface.pixelsfromwindowborder,(float)2);
-	netlines[i].setPosition(Global_interface.pixelsfromwindowborder,Global_interface.pixelsfromwindowborder+(Global_interface.sizeofblock*(i+1))+Global_interface.thicknessoflines*(i+1));
+	netlines[i].setPosition(G_i.indent,G_i.indent+(G_i.SoB*(i+1))+G_i.thick*(i+1));
 	}	
-    for(int i=getnumberoflines(Global_interface.numberofblocks)/2;i<getnumberoflines(Global_interface.numberofblocks);i++)	
+    for(int i=getnumberoflines(G_i.NoB)/2;i<getnumberoflines(G_i.NoB);i++)	
 	{
-	sf::Vector2f A ((float)Global_interface.thicknessoflines,(float)(Global_interface.thicknessoflines+Global_interface.sizeofblock)*5); 
+	sf::Vector2f A ((float)G_i.thick,(float)(G_i.thick+G_i.SoB)*5); 
 	netlines[i].setSize(A) ;
-	netlines[i].setPosition(Global_interface.pixelsfromwindowborder+(Global_interface.sizeofblock*(i-3))+Global_interface.thicknessoflines*(i-3),Global_interface.pixelsfromwindowborder );
+	netlines[i].setPosition(G_i.indent+(G_i.SoB*(i-3))+G_i.thick*(i-3),G_i.indent );
 	}
    
-    for(int i=0;i<getnumberoflines(Global_interface.numberofblocks);i++)
+    for(int i=0;i<getnumberoflines(G_i.NoB);i++)
 	{
 	window->draw(netlines[i]);
 	}
