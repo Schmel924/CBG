@@ -11,12 +11,15 @@ sf::Font minifont;
 minifont.loadFromFile("arial.ttf");
 sf::Text minitext;
 std::string messag = std::to_string(block_coords.x);
-minitext.setString (messag);
+minitext.setString ("INFO HERE");
+minitext.setFont (minifont);
+minitext.setFillColor (sf::Color::White);
+minitext.setPosition (10.0f,10.0f);
 miniwin.clear();
 miniwin.draw(minitext);
 miniwin.display();
 sf::Clock clock;
-while (true)
+while (miniwin.isOpen())
 {
 sf::Time elapsed = clock.getElapsedTime();
 if (elapsed.asSeconds()>=4.0f)
