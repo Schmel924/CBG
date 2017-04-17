@@ -11,9 +11,8 @@ const int getnumberoflines (int numberofblocks)
 	return 2;
 }
 
-void /*??*/ sendlinestowindow (sf::RenderWindow *window)
+void /*??*/ fillnetlines (sf::RectangleShape netlines[])
 {
-    sf::RectangleShape netlines [getnumberoflines(G_i.NoB)];
     for(int i=0;i<getnumberoflines(G_i.NoB)/2;i++)
 	{
 	sf::Vector2f A ((float)(G_i.thick+G_i.SoB)*5,(float)G_i.thick);
@@ -26,6 +25,10 @@ void /*??*/ sendlinestowindow (sf::RenderWindow *window)
 	netlines[i].setSize(A) ;
 	netlines[i].setPosition(G_i.indent+(G_i.SoB*(i-3))+G_i.thick*(i-3),G_i.indent );
 	}
+
+}
+void /*??*/ sendlinestowindow (sf::RenderWindow *window, sf::RectangleShape netlines [])
+{
    
     for(int i=0;i<getnumberoflines(G_i.NoB);i++)
 	{
@@ -46,6 +49,10 @@ int main()
     key_cur.y_coord=1;
     sf::Font font;
     font.loadFromFile("arial.ttf");
+    
+    sf::Vector2u size = window.getSize();
+    sf::RectangleShape netlines [getnumberoflines(G_i.NoB)];
+    fillnetlines (netlines); 
     while (window.isOpen())
     {
         sf::Event event;
@@ -71,9 +78,8 @@ int main()
 			}
         }
 
-        sf::Vector2u size = window.getSize();
         window.clear();
-	sendlinestowindow(&window);
+	sendlinestowindow(&window,netlines);
 	interface iface;
 	iface.render_cursor (&window, &key_cur);
         window.display();
