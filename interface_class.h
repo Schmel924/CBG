@@ -2,8 +2,8 @@
 #define INTERFACE_CLASS_H
 
 #include <SFML/Graphics.hpp>
-
-class keyboard_cursor ;
+#include "cursor_class.h"
+//class keyboard_cursor ;
 
 
 static struct oyvey {
@@ -16,7 +16,9 @@ int NoB = 100; // works as 25  // aka numberofblocks
 class interface {
 public:
 	int a;
-	int render_cursor (sf::RenderWindow *, keyboard_cursor *);
+	int render_cursor (sf::RenderWindow *);
+	keyboard_cursor key_cur;
+	void choosecityblock();
 };
 
 #endif //INTERFACE_CLASS_H 

@@ -12,9 +12,9 @@ cur_pos.y+= cur_coord.y*(G_i.thick+G_i.SoB);
 return cur_pos;
 }
 
-int interface::render_cursor (sf::RenderWindow * window, keyboard_cursor * cur)
+int interface::render_cursor (sf::RenderWindow * window)
 {
-sf::Vector2f cur_coord (cur->getxc(),cur->getyc());
+sf::Vector2f cur_coord (this->key_cur.getxc(),this->key_cur.getyc());
 sf::RectangleShape Cursor;
 Cursor.setSize(sf::Vector2f(G_i.SoB-5,G_i.SoB-5));
 sf::Vector2f cur_pos = coordstoPixels(cur_coord);
@@ -25,4 +25,9 @@ Cursor.setPosition (cur_pos);
 Cursor.setFillColor (sf::Color::White);
 window->draw(Cursor);
 return 0;
+}
+
+void interface::choosecityblock ()
+{
+//return 0;
 } 

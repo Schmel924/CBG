@@ -28,7 +28,7 @@ void /*??*/ fillnetlines (sf::RectangleShape netlines[])
 	sf::Vector2f A ((float)G_i.thick,/*(float)(G_i.thick+G_i.SoB)*5*/
 					sf::VideoMode::getDesktopMode().height); 
 	netlines[i].setSize(A) ;
-	netlines[i].setPosition(G_i.indent+(G_i.SoB*(i-3))+G_i.thick*(i-3),G_i.indent );
+	netlines[i].setPosition(G_i.indent+(G_i.SoB*(i+1-getnumberoflines(G_i.NoB)/2))+G_i.thick*(i+1-getnumberoflines(G_i.NoB)/2),G_i.indent );
 	}
 
 }
@@ -50,9 +50,9 @@ int main()
     sf::RenderWindow window (sf::VideoMode(500,500),"SFML works!");
     //sf::RenderWindow window (sf::VideoMode::getDesktopMode(),"SFML works!");
     interface iface;
-    keyboard_cursor key_cur;
-    key_cur.x_coord=3;
-    key_cur.y_coord=1;
+    //keyboard_cursor key_cur;
+    iface.key_cur.x_coord=3;
+    iface.key_cur.y_coord=1;
     sf::Font font;
     font.loadFromFile("arial.ttf");
     
@@ -70,23 +70,26 @@ int main()
 		switch(event.key.code)
 			{
 			case (sf::Keyboard::Left):
-				key_cur.LEFT_coord();
+				iface.key_cur.LEFT_coord();
 				break;
 			case (sf::Keyboard::Right):
-				key_cur.RIGHT_coord();
+				iface.key_cur.RIGHT_coord();
 				break;
 			case (sf::Keyboard::Up):
-				key_cur.UP_coord();
+				iface.key_cur.UP_coord();
 				break;
 			case (sf::Keyboard::Down):
-				key_cur.DOWN_coord();
+				iface.key_cur.DOWN_coord();
 				break;
-			}
+			case (sf::Keyboard::Return):
+				iface.choosecityblock();
+				break;		
+		}
         }
 
         window.clear();
 	sendlinestowindow(&window,netlines);
-	iface.render_cursor (&window, &key_cur);
+	iface.render_cursor (&window);
         window.display();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{window.close();}
