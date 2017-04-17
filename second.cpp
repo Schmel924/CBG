@@ -8,20 +8,25 @@ const int getnumberoflines (int numberofblocks)
 { if (numberofblocks==25)
 	return 8;
  else 
-	return 2;
+	if (numberofblocks==100)
+		return 18;
+	else 
+		return 2;
 }
 
 void /*??*/ fillnetlines (sf::RectangleShape netlines[])
 {
     for(int i=0;i<getnumberoflines(G_i.NoB)/2;i++)
 	{
-	sf::Vector2f A ((float)(G_i.thick+G_i.SoB)*5,(float)G_i.thick);
+	sf::Vector2f A (/*(float)(G_i.thick+G_i.SoB)*5*/
+			sf::VideoMode::getDesktopMode().width,(float)G_i.thick);
 	netlines[i].setSize(A); //((float)size.x-Global_interface.pixelsfromwindowborder,(float)2);
 	netlines[i].setPosition(G_i.indent,G_i.indent+(G_i.SoB*(i+1))+G_i.thick*(i+1));
 	}	
     for(int i=getnumberoflines(G_i.NoB)/2;i<getnumberoflines(G_i.NoB);i++)	
 	{
-	sf::Vector2f A ((float)G_i.thick,(float)(G_i.thick+G_i.SoB)*5); 
+	sf::Vector2f A ((float)G_i.thick,/*(float)(G_i.thick+G_i.SoB)*5*/
+					sf::VideoMode::getDesktopMode().height); 
 	netlines[i].setSize(A) ;
 	netlines[i].setPosition(G_i.indent+(G_i.SoB*(i-3))+G_i.thick*(i-3),G_i.indent );
 	}
@@ -44,6 +49,7 @@ int main()
     
     sf::RenderWindow window (sf::VideoMode(500,500),"SFML works!");
     //sf::RenderWindow window (sf::VideoMode::getDesktopMode(),"SFML works!");
+    interface iface;
     keyboard_cursor key_cur;
     key_cur.x_coord=3;
     key_cur.y_coord=1;
@@ -80,7 +86,6 @@ int main()
 
         window.clear();
 	sendlinestowindow(&window,netlines);
-	interface iface;
 	iface.render_cursor (&window, &key_cur);
         window.display();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))

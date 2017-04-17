@@ -10,7 +10,7 @@ static struct oyvey {
 int indent = 50;  //aka pixelsfromwindowsborder
 int SoB = 50; // aka sizeofblocks
 int thick = 2; // aka thicknessoflines
-int NoB = 25; // aka numberofblocks
+int NoB = 100; // works as 25  // aka numberofblocks
 } G_i; // aka Global_interface
 
 class interface {
