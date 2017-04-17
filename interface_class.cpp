@@ -29,5 +29,5 @@ return 0;
 
 void interface::choosecityblock ()
 {
-//return 0;
+this->maincitymap.showcityblock(this->key_cur.GetCoords());//return 0;
 } 

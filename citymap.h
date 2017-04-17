@@ -1,6 +1,8 @@
 #ifndef _CITYMAP_H_
 #define _CITYMAP_H_
 #include <string>
+#include <SFML/Graphics.hpp>
+
 
 #define MAX_BLOCK_AXIS 10
 class cityblock {
@@ -14,6 +16,7 @@ class citymap {
 public:
 	cityblock * map [MAX_BLOCK_AXIS][MAX_BLOCK_AXIS];
 	const static int max_block_axis = 5; //well, shit	
+void showcityblock(sf::Vector2i);
 };
 
 #endif //_CITYMAP_H_

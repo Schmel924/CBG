@@ -4,7 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include "cursor_class.h"
 //class keyboard_cursor ;
-
+#include "citymap.h"
+//class citymap;
 
 static struct oyvey {
 int indent = 50;  //aka pixelsfromwindowsborder
@@ -19,6 +20,7 @@ public:
 	int render_cursor (sf::RenderWindow *);
 	keyboard_cursor key_cur;
 	void choosecityblock();
+	citymap maincitymap;
 };
 
 #endif //INTERFACE_CLASS_H 

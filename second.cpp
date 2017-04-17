@@ -83,6 +83,7 @@ int main()
 				break;
 			case (sf::Keyboard::Return):
 				iface.choosecityblock();
+				window.setActive();
 				break;		
 		}
         }
