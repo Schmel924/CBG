@@ -21,7 +21,7 @@ miniwin.display();
 sf::Clock clock;
 while (miniwin.isOpen())
 {
-sf::Time elapsed = clock.getElapsedTime();
+sf::Time elapsed = clock.getElapsedTime(); //shoulda get some other way to close window. But it works, for now...
 if (elapsed.asSeconds()>=4.0f)
 	{miniwin.close();}
 }
