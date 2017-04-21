@@ -34,5 +34,14 @@ while (miniwin.isOpen())
 sf::Time elapsed = clock.getElapsedTime();
 if (elapsed.asSeconds()>=4.0f)
 	{miniwin.close();}
+sf::Event event;
+while (miniwin.pollEvent(event))
+{
+	if(event.type == sf::Event::Closed)
+		miniwin.close();
+	if(event.type == sf::Event::KeyPressed)
+		miniwin.close();
+}
+
 }
 }
