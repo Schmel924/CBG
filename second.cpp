@@ -5,13 +5,15 @@
 #include "interface_class.h"   
 #include "cursor_class.h"
 const int getnumberoflines (int numberofblocks)
-{ if (numberofblocks==25)
-	return 8;
- else 
-	if (numberofblocks==100)
-		return 18;
-	else 
-		return 2;
+{ 
+switch (numberofblocks)
+{
+case 25: return 8;
+case 64: return 14;
+case 100: return 18;
+}
+//(sqrt(NoB)-1)*2; ???????
+return 2;
 }
 
 void /*??*/ fillnetlines (sf::RectangleShape netlines[])
