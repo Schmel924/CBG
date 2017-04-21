@@ -16,19 +16,31 @@ case 100: return 18;
 return 2;
 }
 
-void /*??*/ fillnetlines (sf::RectangleShape netlines[])
+sf::Vector2i getnumberofblocks (sf::VideoMode VM)
+{
+sf::Vector2i NoB;
+int height = VM.height / 50;
+height-=2;
+int width = VM.width / 50;
+width -=2;
+NoB.x = width;
+NoB.y = height;
+return NoB;
+}
+
+void /*??*/ fillnetlines (sf::RectangleShape netlines[], sf::Vector2u size)
 {
     for(int i=0;i<getnumberoflines(G_i.NoB)/2;i++)
 	{
 	sf::Vector2f A (/*(float)(G_i.thick+G_i.SoB)*5*/
-			sf::VideoMode::getDesktopMode().width,(float)G_i.thick);
+			(float)size.x-G_i.indent*2,(float)G_i.thick);
 	netlines[i].setSize(A); //((float)size.x-Global_interface.pixelsfromwindowborder,(float)2);
 	netlines[i].setPosition(G_i.indent,G_i.indent+(G_i.SoB*(i+1))+G_i.thick*(i+1));
 	}	
     for(int i=getnumberoflines(G_i.NoB)/2;i<getnumberoflines(G_i.NoB);i++)	
 	{
 	sf::Vector2f A ((float)G_i.thick,/*(float)(G_i.thick+G_i.SoB)*5*/
-					sf::VideoMode::getDesktopMode().height); 
+					(float)size.y-G_i.indent*2); 
 	netlines[i].setSize(A) ;
 	netlines[i].setPosition(G_i.indent+(G_i.SoB*(i+1-getnumberoflines(G_i.NoB)/2))+G_i.thick*(i+1-getnumberoflines(G_i.NoB)/2),G_i.indent );
 	}
@@ -51,6 +63,7 @@ int main()
     
     sf::RenderWindow window (sf::VideoMode(500,500),"SFML works!");
     //sf::RenderWindow window (sf::VideoMode::getDesktopMode(),"SFML works!");
+    getnumberofblocks(sf::VideoMode(500,500));
     interface iface;
     //keyboard_cursor key_cur;
     iface.key_cur.x_coord=3;
@@ -60,8 +73,9 @@ int main()
     
     sf::Vector2u size = window.getSize();
     sf::RectangleShape netlines [getnumberoflines(G_i.NoB)];
-    fillnetlines (netlines); 
-    while (window.isOpen())
+    fillnetlines (netlines, size); 
+    fprintf(stderr,"%u -- %u-",size.x,size.y); 
+     while (window.isOpen())
     {
         sf::Event event;
         while (window.pollEvent(event))
