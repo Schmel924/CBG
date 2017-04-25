@@ -70,7 +70,7 @@ int main()
     iface.key_cur.y_coord=1;
     sf::Font font;
     font.loadFromFile("arial.ttf");
-    
+	iface.maincitymap.map[3][3].name="Nonempty!";    
     sf::Vector2u size = window.getSize();
     sf::RectangleShape netlines [getnumberoflines(G_i.NoB)];
     fillnetlines (netlines, size); 
