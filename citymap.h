@@ -11,6 +11,7 @@ public:
 	int A;
 	int B;
 	cityblock (std::string _name = "Empty\n",int _a=0,int _b=0){name=_name;A=_a;B=_b;}
+	std::string showinfo () {return this->name+"\n"+std::to_string(A)+"::"+std::to_string(B); };
 };
 
 class citymap {
@@ -22,7 +23,7 @@ public:
 	{static cityblock CBlock;
 	for (int i =0;i<MAX_BLOCK_AXIS;i++)
 		for(int j=0;j<MAX_BLOCK_AXIS;j++)
-			{map[i][j]=CBlock;}}
+			{map[i][j]=CBlock;}};
 };
 
 #endif //_CITYMAP_H_

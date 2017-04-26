@@ -20,7 +20,7 @@ sf::Font minifont;
 minifont.loadFromFile("arial.ttf");
 sf::Text minitext;
 //sf::Vector2i NoBs = getNoB(sf::VideoMode::getDesktopMode());
-std::string messag = this->map[block_coords.x][block_coords.y].name;//"INFO HERE\n"+ std::to_string(NoBs.y);
+std::string messag = this->map[block_coords.x][block_coords.y].showinfo();//"INFO HERE\n"+ std::to_string(NoBs.y);
 minitext.setString (messag);
 minitext.setFont (minifont);
 minitext.setFillColor (sf::Color::White);
